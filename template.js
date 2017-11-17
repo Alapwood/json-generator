@@ -32,19 +32,18 @@ function generateFromArray(template, defaults) {
     const myDefaults = JSON.parse(JSON.stringify(defaults));
     
     let newArray = [];
-    template.forEach((item, i) => {
+    let repeat = 1;
+    template.forEach((item) => {
         const match = repeatTemplateRegex.exec(item);
+
         if (match) {
-            if (!template[i + 1]) return;
-            const nextItem = template[i + 1];
-
-            const repeat = parseInt(match[1]) - 1;
-
-            for (let j = 0; j < repeat; j+= 1) {
-                newArray.push(generateFromTemplate(nextItem, myDefaults));
-            }
+            repeat = parseInt(match[1]);
         } else {
-            newArray.push(generateFromTemplate(item, myDefaults));
+            for (let i = 0; i < repeat; i += 1) {
+                newArray.push(generateFromTemplate(item, myDefaults));
+            }
+            
+            repeat = 1;
         }
     });
 
@@ -59,6 +58,8 @@ function generateFromString(template, defaults) {
         if (StringTemplates.hasOwnProperty(templateFunction)) {
             return defaults[templateFunction] = StringTemplates[templateFunction](defaults, ...templateArguments);
         }
+
+        return match;
     });
 
     try {
