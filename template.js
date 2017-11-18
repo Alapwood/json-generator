@@ -1,7 +1,7 @@
 var StringTemplates = require('./helpers/stringTemplates');
 
 var repeatTemplateRegex = /{{repeat ([\d]*)}}/g;
-const regex = /{{(.*?)}}/g
+const regex = /{{(.*?)(?!}}})}}/g;
 
 function generateFromTemplate(template, defaults={}) {
     switch (typeof template) {

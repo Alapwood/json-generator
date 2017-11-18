@@ -1,3 +1,4 @@
+const randexp = require('randexp').randexp;
 var Chance = require('chance');
 chance = new Chance();
 
@@ -35,3 +36,9 @@ exports.email = (defaults) => {
 exports.firstName = () => chance.first();
 exports.lastName = () => chance.last();
 exports.profession = () => chance.profession({rank: true});
+
+// Extras
+exports.regexp = (defaults, ...arguments) => {
+    const regexp = arguments.join(' ');
+    return randexp(regexp);
+}

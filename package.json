@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "chance": "^1.0.12"
+    "chance": "^1.0.12",
+    "randexp": "^0.4.6"
   }
 }
