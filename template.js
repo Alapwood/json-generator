@@ -56,7 +56,7 @@ function generateFromString(template, defaults) {
         const templateArguments = templateString.split(' ').slice(1);
 
         if (StringTemplates.hasOwnProperty(templateFunction)) {
-            return defaults[templateFunction] = StringTemplates[templateFunction](defaults, ...templateArguments);
+            return defaults[templateFunction] = StringTemplates[templateFunction](...templateArguments, defaults);
         }
 
         return match;

@@ -6,24 +6,24 @@ chance = new Chance();
 exports.bool = () => chance.bool();
 exports.capital = () => chance.letter({casing: 'upper'});
 exports.character = () => chance.character();
-exports.integer = (defaults, n1, n2) => {
+exports.integer = (n1, n2) => {
     const min = Math.min(n1, n2) || 0;
     const max = Math.max(n1, n2) || n1;
     return chance.integer({min, max});
 };
-exports.floating = (defaults, n1, n2) => {
+exports.floating = (n1, n2) => {
     const min = Math.min(n1, n2) || 0;
     const max = Math.max(n1, n2) || n1;
     return chance.floating({min, max});
 };
 exports.letter = () => chance.letter({casing: 'lower'});
-exports.string = (defaults, length) => chance.string({length});
+exports.string = (length) => chance.string({length});
 
 // Text
-exports.paragraph = (defaults, sentences) => chance.paragraph({sentences});
-exports.sentence = (defaults, words) => chance.sentence({words});
+exports.paragraph = (sentences) => chance.paragraph({sentences});
+exports.sentence = (words) => chance.sentence({words});
 exports.syllable = () => chance.syllable();
-exports.word = (defaults, length) => chance.word({length});
+exports.word = (length) => chance.word({length});
 
 // People
 exports.company = () => chance.company().replace(',', '');
@@ -45,7 +45,7 @@ exports.lastName = () => chance.last();
 exports.profession = () => chance.profession({rank: true});
 
 // Extras
-exports.regexp = (defaults, ...arguments) => {
-    const regexp = arguments.join(' ');
+exports.regexp = (...arguments) => {
+    const regexp = arguments.slice(0, -1).join(' ');
     return randexp(regexp);
 }
