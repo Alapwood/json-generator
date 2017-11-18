@@ -19,6 +19,12 @@ exports.floating = (defaults, n1, n2) => {
 exports.letter = () => chance.letter({casing: 'lower'});
 exports.string = (defaults, length) => chance.string({length});
 
+// Text
+exports.paragraph = (defaults, sentences) => chance.paragraph({sentences});
+exports.sentence = (defaults, words) => chance.sentence({words});
+exports.syllable = () => chance.syllable();
+exports.word = (defaults, length) => chance.word({length});
+
 // People
 exports.company = () => chance.company().replace(',', '');
 exports.email = (defaults) => {
