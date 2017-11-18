@@ -4,8 +4,8 @@ chance = new Chance();
 
 // Basics
 exports.bool = () => chance.bool();
-exports.character = () => chance.character();
 exports.capital = () => chance.letter({casing: 'upper'});
+exports.character = () => chance.character();
 exports.integer = (defaults, n1, n2) => {
     const min = Math.min(n1, n2) || 0;
     const max = Math.max(n1, n2) || n1;
@@ -17,6 +17,7 @@ exports.floating = (defaults, n1, n2) => {
     return chance.floating({min, max});
 };
 exports.letter = () => chance.letter({casing: 'lower'});
+exports.string = (defaults, length) => chance.string({length});
 
 // People
 exports.company = () => chance.company().replace(',', '');
