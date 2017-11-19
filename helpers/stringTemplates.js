@@ -25,7 +25,9 @@ exports.sentence = (words) => chance.sentence({words});
 exports.syllable = () => chance.syllable();
 exports.word = (length) => chance.word({length});
 
-// People
+// Person
+exports.age = (type) => chance.age({type});
+exports.birthday = (type) => chance.birthday({type}).toISOString();
 exports.company = () => chance.company().replace(',', '');
 exports.email = (defaults) => {
     const company = (defaults['company'] || chance.company()).split(/[\s\.,]+/)[0];
@@ -41,8 +43,14 @@ exports.email = (defaults) => {
 }
 
 exports.firstName = () => chance.first();
+exports.gender = () => chance.gender();
 exports.lastName = () => chance.last();
+exports.prefix = (full, defaults) => {
+    const gender = defaults['gender'] || chance.gender();
+    return chance.prefix({full: full.toLower() === 'full'}, gender);
+}
 exports.profession = () => chance.profession({rank: true});
+exports.suffix = (full) => chance.suffix({full});
 
 // Extras
 exports.regexp = (...arguments) => {
