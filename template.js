@@ -63,12 +63,10 @@ function generateFromString(template, defaults) {
     });
 
     try {
-        JSON.parse(result);
+        return JSON.parse(result);
     } catch (e) {
         return result;
     }
-    
-    return JSON.parse(result);
 }
 
 module.exports = generateFromTemplate;
